@@ -1,0 +1,56 @@
+%*******************************************************************************
+% * Copyright (c) 2006-2013 
+% * Institute of Automation, Dresden University of Technology
+% * 
+% * All rights reserved. This program and the accompanying materials
+% * are made available under the terms of the Eclipse Public License v1.0 
+% * which accompanies this distribution, and is available at
+% * http://www.eclipse.org/legal/epl-v10.html
+% * 
+% * Contributors:
+% *   Institute of Automation - TU Dresden, Germany 
+% *      - initial API and implementation
+% ******************************************************************************/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Einleitung}
+\label{sec:VerbindlichkeitenVorab}
+
+
+In den meisten Roboteranwendungen ist die Objekterkennung und Klassifizieren eine
+der wichtigsten Aufgaben. Im Vergleich zur 2D-Bildverarbeitung hat 3D-Objekterkennung
+mehrere Vorteilen und rückt als Forschungsthema mehr in den Fokus, da es Lichtbedingungen, Farbveränderungen, radiale Verzerrungen usw, welche die Erkennung in 2D beeinflussen, vermeidet.
+
+
+
+Um 3D Ojekte zu erkennen, gibt es 2 Methoden: die Erste ist Matching durch Lokale Deskriptoren; die zweite Methode ist das Matching durch globalen Deskriptoren.
+Dieses Thema behandelt hauptsächlich globale Deskriptioren. Globale Deskriptoren codieren die Objektgeometrie. Sie werden nicht für einzelne Punkte berechnet, sondern für einen ganzen Cluster, der ein Objekt darstellt. Globale Deskriptoren werden zur Objekterkennung und Klassifizierung, zur geometrischen Analyse (Objekttyp, Form) und zur Posenschätzung verwendet. Viewpoint Feature Histogram(VFH)[4], Clustered Viewpoint Feature Histogram(CVFH)[5] und Oriented, Unique and Repeatable CVFH 
+(OURCVFH)[2] sind 3 gebräuchlich globalen Deskriptoren, die für PointsCloud entwickelt werden.
+
+
+Deep Learning ist jetzt sehr populär und erfolgreich. Ein wichtiger Grund ist, dass Deep Learning mit Rohdaten beginnen kann, da die Deskriptor beim Lernen automatisch vom neuronalen Netzwerk erstellt werden und die Zielfunktion aus den Daten gelernt
+werden kann. Deep Learning verschiebt die Last des Feature-Designs zu dem zugrundeliegenden Lernsystem und Klassifikationslernensystem, das typisch für ein früheres mehrschichtiges neuronales Netzwerklernen ist.
+Beim DLR in Institut RMC  werden Variation-Auto-Encoder (VAE) als eine unbeaufsichtigte Deep-Learning Klassifiktorentrainingsmethode eingesetzt.
+
+Open Source, Point Cloud Libray(PCL)[1], ist ein 3D-Bilderarbeitung Tool und hat inzwischen einen ähnlichen Status wie OpenCV für die 2D-Bildverarbeitung erreicht. PCL enthätet zahlreichen Algorithmen zur Verarbeitung n-dimensionaler Punktwolken und
+3D Geometrien. Dieser Deskriptor-Tree wird mithilfe der Software, PCL , realisiert.
+
+
+ 
+ 
+ 
+\section{Aufgabestellung}
+ 
+ 
+ In CVFH und OURCVFH wird das Objekt in kotinuierliche Regionen unterteilt. In einem Objekt können mehreren Deskriptoren erzeugnet werden. In der aktuellen  Implementierung in PCL sind die extrahierten Histogram Feautes in einer ungeordneten  Liste.
+ 
+ 
+ Das Ziel dieser Arbeit ist es einen Deskriptor-Baum zu bauen, wodurch die geometrischen Beziehungen der Deskriptoren strukturiert abgelegt werden können.  Stand der Technik ist es, dass mithilfe von Nächste-Nachbarn-Klassifikation[3] die VFH,  CVFH und OURCVFH Deskriptoren geschätzt und klassifiziert werden. Wird ein 3D  Baum als Ansatz gewält, so können die Deskriptoren durch berechnung der Entfernung  der Bäume[6] klassifiziert werden.
+ 
+ 
+ 
+ Ein Problem beim Deep-Learning ist , dass End-to-End DeepLearning für 3D-Objekte  möglich ist, aber kompliziert, da die Oberflächen mit Hilfe von Differentialgeometrie  und komplizierten Windungen betrachtet werden müssen. Daher werden wir versuchen,
+ die Struktur anders zu betrachten.
+ 
+ 
